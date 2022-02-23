@@ -1,8 +1,8 @@
 ---
   title: "Computational Musicology"
-output:
-  flexdashboard::flex_dashboard:
-  orientation: columns
+  output:
+    flexdashboard::flex_dashboard:
+    orientation: columns
 ---
   
   ```{r setup, include=FALSE}
