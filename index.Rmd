@@ -1,44 +1,58 @@
 ---
   title: "Computational Musicology"
+  author: "Melle van der Brugge"
+  date: "23/02/2022"
   output:
     flexdashboard::flex_dashboard:
-    orientation: columns
+      orientation: columns
+      vertical_layout: fill
+      storyboard: true
 ---
   
-  ```{r setup, include=FALSE}
+  ```{r setup, include=FALSE, }
 knitr::opts_chunk$set(echo = TRUE)
 library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(spotifyr)
 ```
-Introduction
-=====================================
   
-  Column {.tabset}
------------------------------------------------------------------------
-  
-  ### Corpus Description
-  
-  ```{r}
+# Beast mode
 
+## Column 1 {data-width=650}
+### Introduction
+fdssdf
+
+## Column 2 {data-width=350}
+### Beast mode playlist
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+
+
+
+# Workout music gives same feeling as party!
+
+## Column 1 {data-width=650}
+### Feelings 
+In the figure "Emotional quadrant workout and party playlists" you can see what feeling your party or workout playlists give. Do they convey peace, joy, anger, sadness? We can answer this question by looking at two measures Spotify has established: Valence and Energy. 
+
+Defined by Spotify, valence defines it as follows: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). 
+On the other hand, energy defines it as follows: Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. 
+
+With these two measurements, you can create a quadrant with a scatter plot that reveals this information. As you can see, each point represents a track from the workout playlist or the party playlist, showing what feeling the track expresses.
+
+## Column 2 {data-width=350, .tabset}
+### Emotional quadrant workout and party playlists
+```{r picture, echo = F, fig.cap = "Title", out.width = '100%'}
+knitr::include_graphics("Emotional_quadrant_workout_and_party_playlists.png")
 ```
 
-Visualisation
-=====================================
-  Column {.tabset}
------------------------------------------------------------------------
-  
-  ### First plot
-  
-  ```{r}
+### table 2
 
-```
 
-Conclusion
-=====================================
-  Column {.tabset}
------------------------------------------------------------------------
-  ### Conclusion
-  
-  ```{r}
 
-```
+# Conclusion
 
+## Hallo {data-width=500}
+
+## Hallo1 {data-width=500}
