@@ -33,9 +33,7 @@ The corpus I chose for Computational Musicology is playlists with the label "Wor
 
 ### Beast mode playlist
 
-\<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-
-
+<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
 # The Workout Feeling
 
@@ -123,11 +121,11 @@ knitr::include_graphics("chromogram_pitch_time_legend_tevez.png")
 ## Column 2 {data-width="250"}
 
 ### Explanation
-Explanation about the graphs
+The two self-similarity matrices at the right, each summarised at the bar level but with axes in seconds, illustrate pitch- and timbre-based self-similarity within Legend by Tevez. 
 
 # Normal vs remix
 
-## Column 1 {data-width="700"}
+## Column 1 {data-width="800"}
 
 ### Trust Nobody by DJ Snake
 ```{r trust nobody}
@@ -163,10 +161,15 @@ compmus_long_distance(
   scale_fill_viridis_c(guide = NULL)
 ```
 
-## Column 2 {data-width="300"}
+## Column 2 {data-width="200"}
 
 ### Explanation
-Some Explanation about the graph
+The visualisation of two performances of the song Trust Nobody by DJ Snake. The one on the x-axis is the original one, and the one on the y-axis is the Remix version by Valentino Khan.
+The visualisation uses the Aitchison distance between chroma features to show how the two performances align.
+
+The remix version already starts a bit faster. Therefore, the beat drop of the remix is already at 00:49, while the beat drop in the original is 14 seconds later, at 01:03. 
+
+On Khan's remix version, hardstyle anticipation masquerades as a break after a haunting build. This lure eventually gives way to a double-build that falls on some pseudo-dubstep with gritty talking synths and hard-hitting percussion elements. Khan's remix adds a level of grit and sound design to the original that takes its energy to a darker stratosphere.
 
 # Conclusion
 
