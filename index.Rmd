@@ -9,7 +9,7 @@
       storyboard: true
       selfcontained: false
 ---
-  
+
 ```{r setup}
 library(flexdashboard)
 library(tidyverse)
@@ -20,50 +20,162 @@ library(shiny)
 library(compmus)
 library(knitr)
 ```
-  
-  
+
 # Beast mode
 
-## Column 1 {data-width=650}
+## Column 1 {data-width="650"}
+
 ### Introduction
-The corpus I chose for Computational Musicology is playlists with the label "Workout". During covid, I often went to the gym to get out of the house. And if I went to the gym, I always took my phone and Air Pods with me. Music was an essential part of my gym workouts. And I always listen to the label "Workout" on Spotify during my sessions. 
-So, what does it mean to be a "workout" playlist? One thing that interests me is that it needs to give you energy because you are exercising, and you do not want to stop. It needs to help you focus on your movements. And you don't want to get bored or feel the pain from the exercise. Another exciting thing for me is the question, "how does a "workout" playlist distinguish itself from another playlist?". Workout music often has a bumping beat, but party music can also have this, so what is the difference between party music and workout music. And does all the workout music have lyrics or not to keep yourself motivated, or is this not necessary. One should consider the emotions, memories, and associations that different songs evoke. For some people, the extent to which they identify with the singer's emotional state and viewpoint determines how motivated they feel
 
+The corpus I chose for Computational Musicology is playlists with the label "Workout". During covid, I often went to the gym to get out of the house. And if I went to the gym, I always took my phone and Air Pods with me. Music was an essential part of my gym workouts. And I always listen to the label "Workout" on Spotify during my sessions. So, what does it mean to be a "workout" playlist? One thing that interests me is that it needs to give you energy because you are exercising, and you do not want to stop. It needs to help you focus on your movements. And you don't want to get bored or feel the pain from the exercise. Another exciting thing for me is the question, "how does a "workout" playlist distinguish itself from another playlist?". Workout music often has a bumping beat, but party music can also have this, so what is the difference between party music and workout music. And does all the workout music have lyrics or not to keep yourself motivated, or is this not necessary. One should consider the emotions, memories, and associations that different songs evoke. For some people, the extent to which they identify with the singer's emotional state and viewpoint determines how motivated they feel
 
+## Column 2 {data-width="350"}
 
-## Column 2 {data-width=350}
 ### Beast mode playlist
-<iframe  src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" useragent()></iframe>
 
+\<iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 
 
 # The Workout Feeling
 
-## Column 1 {data-width=650}
-### Feelings 
-In the figure "Emotional quadrant workout and party playlists" you can see what feeling your party or workout playlists give. Do they convey peace, joy, anger, sadness? We can answer this question by looking at two measures Spotify has established: Valence and Energy. 
+## Column 1 {data-width="650"}
 
-Defined by Spotify, valence defines it as follows: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). 
-On the other hand, energy defines it as follows: Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. 
+### Feelings
 
-With these two measurements, you can create a quadrant with a scatter plot that reveals this information. As you can see, each point represents a track from the workout playlist or the party playlist, showing what feeling the track expresses.
-
-## Column 2 {data-width=350, .tabset}
-### Emotional quadrant workout and party playlists
 ```{r picture, echo = F, fig.cap = "Title", out.width = '100%'}
 knitr::include_graphics("Emotional_quadrant_workout_and_party_playlists.png")
 ```
 
+## Column 2 {.tabset data-width="350,"}
+
+### Emotional quadrant workout and party playlists
+
+In the figure "Emotional quadrant workout and party playlists" you can see what feeling your party or workout playlists give. Do they convey peace, joy, anger, sadness? We can answer this question by looking at two measures Spotify has established: Valence and Energy.
+
+Defined by Spotify, valence defines it as follows: A measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry). On the other hand, energy defines it as follows: Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy.
+
+With these two measurements, you can create a quadrant with a scatter plot that reveals this information. As you can see, each point represents a track from the workout playlist or the party playlist, showing what feeling the track expresses.
+
+
 ### table 2
+
 Possible other plot with different variables
 
+# What is the structure of Legend by Tevez
+
+## Column 1 {.tabset data-width="750"}
+
+### Croma and timber matrices
+
+```{r legend1}
+tevez_legend <- 
+  get_tidy_audio_analysis("05EG9LwFCVjkoYEWzsrHHO") %>%
+  compmus_align(bars, segments) %>%
+  select(bars) %>%
+  unnest(bars) %>%
+  mutate(
+    pitches =
+      map(segments,
+        compmus_summarise, pitches,
+        method = "acentre", norm = "manhattan"
+      )
+  ) %>%
+  mutate(
+    timbre =
+      map(segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  )
+bind_rows(
+  tevez_legend %>% 
+    compmus_self_similarity(pitches, "aitchison") %>% 
+    mutate(d = d / max(d), type = "Chroma"),
+  tevez_legend %>% 
+    compmus_self_similarity(timbre, "euclidean") %>% 
+    mutate(d = d / max(d), type = "Timbre")
+) %>%
+  mutate() %>% 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  facet_wrap(~type) +
+  scale_fill_viridis_c(option = "E", guide = "none") +
+  theme_classic() + 
+  labs(x = "", y = "")
+```
+
+### Unknown
+
+```{r picture1, echo = F, fig.cap = "Title", out.width = '100%'}
+knitr::include_graphics("chromogram_pitch_time_legend_tevez.png")
+```
+
+## Column 2 {data-width="250"}
+
+### Explanation
+Explanation about the graphs
+
+# Normal vs remix
+
+## Column 1 {data-width="700"}
+
+### Trust Nobody by DJ Snake
+```{r trust nobody}
+trust_nobody_normal <- get_tidy_audio_analysis("08bDGEzsYd9ebCc7p23X4j") %>%
+      select(segments) %>%
+      unnest(segments) %>%
+      select(start, duration, pitches)
+
+trust_nobody_remix_valentino_khan <- get_tidy_audio_analysis("52wqMbmCqeTw37jd4zFAWr") %>%
+      select(segments) %>%
+      unnest(segments) %>%
+      select(start, duration, pitches)
+
+compmus_long_distance(
+  trust_nobody_normal %>% mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  trust_nobody_remix_valentino_khan %>% mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "aitchison"
+) %>%
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "Trust nobody", y = "Trust Nobody Valentino Khan Remix") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL)
+```
+
+## Column 2 {data-width="300"}
+
+### Explanation
+Some Explanation about the graph
 
 # Conclusion
-## Conclusion
-### Conclusion {data-width=1000}
+
+## Column {data-width="1000"}
+
+### Conclusion 
+
 No conclusion yet, working on it;)
 
-## Hallo {data-width=500}
+## Hallo {data-width="500"}
 
-## Hallo1 {data-width=500}
+## Hallo1 {data-width="500"}
