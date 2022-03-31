@@ -8,6 +8,7 @@
       storyboard: true
       selfcontained: false
       theme: 
+        font: "serif"
         bg: "#f4b41a"
         fg: "#143d59" 
       social: menu
