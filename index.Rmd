@@ -1,24 +1,19 @@
 ---
-title: "Computational Musicology"
-author: "Melle van der Brugge"
-date: "23/02/2022"
-runtime: shiny
-output: 
-  flexdashboard::flex_dashboard:
-    vertical_layout: fill
-    storyboard: true
-    selfcontained: false
-    theme: 
-      bg: "#f4b41a"
-      fg: "#143d59" 
-      primary: "#ED79F9"
-      base_font: !expr bslib::font_google("Prompt")
-      code_font: !expr bslib::font_google("JetBrains Mono")
-    orientation: columns
-    social: menu
-    source_code: embed
-    navbar:
-      - { title: "Link to playlist", href: "https://open.spotify.com/playlist/37i9dQZF1DX76Wlfdnj7AP", target="_blank" rel="noopener noreferrer", align: right, icon: glyphicon}
+  title: "Computational Musicology"
+  author: "Melle van der Brugge"
+  output:
+    flexdashboard::flex_dashboard:
+      orientation: columns
+      vertical_layout: fill
+      storyboard: true
+      selfcontained: false
+      theme: 
+        bg: "#f4b41a"
+        fg: "#143d59" 
+      social: menu
+      source_code: embed
+      navbar:
+      - { title: "Link to playlist", href: "https://open.spotify.com/playlist/37i9dQZF1DX76Wlfdnj7AP", align: right, icon: glyphicon}
       
 ---
 
