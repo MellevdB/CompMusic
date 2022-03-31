@@ -127,43 +127,23 @@ compmus_long_distance(
 
 ***
 
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/08bDGEzsYd9ebCc7p23X4j?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/52wqMbmCqeTw37jd4zFAWr?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 
 ### Slow vs Fast
 
-```{r MONTERO vs Element}
-MONTERO <- get_tidy_audio_analysis("3BZEcbdtXQSo7OrvKRJ6mb")
-MONTERO %>%
-  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) %>%
-  ggplot(aes(x = time, y = bpm, fill = power)) +
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +
-  labs(x = "Time (s)", y = "Tempo (BPM)") +
-  theme_classic()
 
-Element<- get_tidy_audio_analysis("57BGVV6wcyhbn3hsjlqEZB")
-Element %>%
-  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) %>%
-  ggplot(aes(x = time, y = bpm, fill = power)) +
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +
-  labs(x = "Time (s)", y = "Tempo (BPM)") +
-  theme_classic()
-```
 ***
 
 Montero and Element are the two songs with the highest and lowest tempo in the beast mode playlist. You can see the clear difference between the two
 
 ### Learn More
+jvhjhv
 
 
 
 Credits {data-icon="fa-info"}
 =====================================     
    
-
-### Basic card
-   
-### Primary background 
-
-### Secondary background 
