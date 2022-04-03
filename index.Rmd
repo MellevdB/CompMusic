@@ -6,16 +6,14 @@
       orientation: columns
       vertical_layout: fill
       storyboard: true
-      selfcontained: false
       theme: 
-        font: "serif"
         bg: "#f4b41a"
         fg: "#143d59" 
       social: menu
       source_code: embed
-      navbar:
+      navbar: 
       - { title: "Link to playlist", href: "https://open.spotify.com/playlist/37i9dQZF1DX76Wlfdnj7AP", align: right, icon: glyphicon}
-      
+      self_contained: false
 ---
 
 ```{r setup}
@@ -32,31 +30,71 @@ library(heatmaply)
 library(ggdendro)
 ```
 
+# The Playlist {data-icon="fa-music"}
 
-The Playlist {data-icon="fa-music"}
-===================================== 
+**Get your Beast Mode on**!\
+"*Beast mode refers to the aggressive, animalistic persona that one might assume when in competition or combat in order to overpower an opponent*."
 
-Get your Beast Mode on!
+The corpus I chose for Computational Musicology is playlists with the label "Workout". During covid, I often went to the gym to get out of the house. And if I went to the gym, I always took my phone and Air Pods with me. Music was an essential part of my gym workouts. And I always listen to the label "Workout" on Spotify during my sessions. So, what does it mean to be a "workout" playlist? One thing that interests me is that it needs to give you energy because you are exercising, and you do not want to stop. It needs to help you focus on your movements. And you don't want to get bored or feel the pain from the exercise. Another exciting thing for me is the question, "how does a "workout" playlist distinguish itself from another playlist?". Workout music often has a bumping beat, but party music can also have this, so what is the difference between party music and workout music. And does all the workout music have lyrics to keep yourself motivated, or is this not necessary. One should consider the emotions, memories, and associations that different songs evoke. For some people, the extent to which they identify with the singer's emotional state and viewpoint determines how motivated they feel
 
-"Beast mode refers to the aggressive, animalistic persona that one might assume when in competition or combat in order to overpower an opponent."
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
 
-The beast mode playlist is a playlist with 200 songs and has around 8.8 milion likes! The Beast mode playlist made by Spotify is therefore the most popular workout playlist on Spotify
+</iframe>
 
+The beast mode playlist is a playlist with 200 songs and has around 8.8 milion likes! The Beast mode playlist, made by Spotify, is therefore the most popular workout playlist on Spotify\
 But how does a workout playlist distinguish itself from other playlists? And what are the characteristics of a workout playlist? Check out the storyboard and find out!
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX76Wlfdnj7AP?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+# Storyboard {.storyboard data-icon="fa-tachometer"}
+
+### **Introduction**
+
+It can be hard to stay motivated during a workout, especially when you have sooo many other things on your mind. But exercise can help distract you from your to-do lists and every day anxieties, something we all could really use during the age of the novel coronavirus.
+
+"We know about the mental and physical benefits of exercise for the brain, and that it aids with sleep," says Jordan Metzl, MD, a sports medicine physician at Hospital for Special Surgery in New York City previously told Women's Health. "When people are ruminating about something, exercise helps."
+
+If you're struggling to stay in the zone, there are a couple of things you can do to really amplify your sweat sesh. Lacing up a fresh pair of sneakers, for starters. Or a crowd favorite: cranking the beats.
+
+The right workout playlist can make a huge difference in how you feel and perform during your workouts. Listening to high-tempo music (the kind that's around 170 heartbeats per minute), made people perceive their workouts as being easier, even when they were challenging, and t boosted cardiovascular benefits more than lower tempo tunes, according to a recent study published in Frontiers in Psychology.
+
+What's more: Music may change the way that you respond to fatigue---and even boost your endurance, per research published in the Journal of Sports Exercise Psychology. Plus, other research from Sage Journal has shown that tunes can make you feel more powerful and that people who listen to music they deemed "pleasing" had higher levels of serotonin, also known as the "feel-good" hormone, according to findings published in the book Progress in Brain Research. Combine that with a workout, which already amps up your endorphins, and you'll really be treating your body right (Jones & Jones, 2021).
+
+### **Exploring the playlist** 
+
+```{r exploring}
+beast_mode <-
+  get_playlist_audio_features("", "37i9dQZF1DX76Wlfdnj7AP")
+
+feature_names <- names(beast_mode)[6:16]
+
+beast_mode %>%
+  select(c('playlist_name', feature_names)) %>%
+  pivot_longer(cols = feature_names) %>%
+  ggplot(aes(x = value)) +
+  geom_density(aes(color = playlist_name), alpha = 0.5) +
+  facet_wrap(~name, ncol = 3, scales = 'free') +
+  labs(title = 'Spotify Audio Feature Density',
+       x = '', y = 'density') +
+  theme(axis.text.y = element_blank()) 
+
+
+```
+
+------------------------------------------------------------------------
+
+When your mission is to create the perfect workout playlist, the first thing you want is to have songs you enjoy off course. But there are some other features you want your songs to have in you workout playlist. You want ubeat and energising tracks that will keep you moving. You maybe want songs that have inspiring and motivational lyrics. And you should consider the beat; working out in time to the beat can help you get in you "zone" so you can make most of you workout.
+
+A few features jump out in the figure on the left.\
+The danceabillity of the playlist is around 0.74. A value of 0.0 is least danceable and 1.0 is most danceable. Danceabillity describes how suitable a track is for dancing based on a combination of musical elements including tempo, rythm stabillity, beat strength, and overall regularity. You also want this in your workout playlist to keep the tempo, energy in your workout
+
+Energy is also high in the Beast mode playlist. Energy is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity. When doing you workout, you want to have the energy the finish all you exercises. Songs having a high energy will help you achieve this.
+
+The instrumentalness is very low in the Beast mode playlist. So the predictions of Spotify are that the tracks do contain vocal content. And this is something you want in your playlist, lyrics voor inspiring and moticvation, but also nice beats to keep yopur energy
+
+The speechiness is mostly onder 0.33, representing music and other non-speech-like tracks. This is an interesting insight in the corpus, because inspiring and motivational lyrics could help you in your workout. Apparently, people who listen to the Beast mode playlist have a preference in danceability and energy over inspiring and motivational lyrics.
 
 
 
-Storyboard {.storyboard data-icon="fa-tachometer"}
-=========================================
-
-### Introduction
-
-blah blah blah
-
-
-### The Workout Feeling
+### **The Workout Feeling**
 
 ```{r clustering}
 beast_mode <-
@@ -77,7 +115,7 @@ emotionalQuadrant <- ggplot(data = beast_mode, aes(x = valence, y = energy, colo
 emotionalQuadrant
 ```
 
-*** 
+------------------------------------------------------------------------
 
 In the figure "Emotional quadrant Beast mode" you can see what feeling the Beast mode playlist gives. Do songs convey peace, joy, anger, sadness? We can answer this question by looking at two measures Spotify has established: Valence and Energy.
 
@@ -85,8 +123,7 @@ Defined by Spotify, valence defines it as follows: A measure from 0.0 to 1.0 des
 
 With these two measurements, you can create a quadrant with a scatter plot that reveals this information. As you can see, the Beast mode playlist is high in Energy and Valence has a nice distribution.
 
-
-### The Remix Effect
+### **The Remix Effect**
 
 ```{r trust nobody}
 trust_nobody_normal <- get_tidy_audio_analysis("08bDGEzsYd9ebCc7p23X4j") %>%
@@ -121,25 +158,40 @@ compmus_long_distance(
   scale_fill_viridis_c(guide = NULL)
 ```
 
-***
+------------------------------------------------------------------------
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/08bDGEzsYd9ebCc7p23X4j?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/3wRs5NGdWArDIHoUw9UNMJ?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
 
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/52wqMbmCqeTw37jd4zFAWr?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+</iframe>
 
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6r58Yml4mD6I4MXwN4UNkx?utm_source=generator" width="100%" height="80" frameBorder="0" allowfullscreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
 
-### Slow vs Fast
+</iframe>
 
+### **Slow vs Fast**
 
-***
+------------------------------------------------------------------------
 
 Montero and Element are the two songs with the highest and lowest tempo in the beast mode playlist. You can see the clear difference between the two
 
-### Learn More
+### **Learn More**
+
 jvhjhv
 
+# Credits {data-icon="fa-info"}
 
+## Column 1 {data-width="500"}
 
-Credits {data-icon="fa-info"}
-=====================================     
-   
+### UvA
+
+## Column 2 {data-width="500"}
+
+### Reference list
+
+Buentello, S. (2021, December 28). Explore your activity on Spotify with R and "spotifyr": How to analyze and visualize your streaming history and music tastes. Medium. Retrieved April 3, 2022, from [[https://towardsdatascience.com/explore-your-activity-on-spotify-with-r-and-spotifyr-how-to-analyze-and-visualize-your-stream-dee41cb63526\\\\](https://towardsdatascience.com/explore-your-activity-on-spotify-with-r-and-spotifyr-how-to-analyze-and-visualize-your-stream-dee41cb63526){.uri}](%5Bhttps://towardsdatascience.com/explore-your-activity-on-spotify-with-r-and-spotifyr-how-to-analyze-and-visualize-your-stream-dee41cb63526%5D(https://towardsdatascience.com/explore-your-activity-on-spotify-with-r-and-spotifyr-how-to-analyze-and-visualize-your-stream-dee41cb63526)%7B.uri%7D){.uri}
+
+Jones, A., & Jones, A. (2021, November 2). Umm, This May Be The Greatest Workout Playlist Of All Time. Women's Health. Retrieved April 3, 2022, from <https://www.womenshealthmag.com/fitness/a27511573/best-workout-songs-playlist/>
+
+Pavlik, K. (2020, January 3). Classifying genres in R using Spotify data. Kaylin Pavlik. Retrieved April 3, 2022, from <https://www.kaylinpavlik.com/classifying-songs-genres/>
+
+Web API Reference \| Spotify for Developers. (n.d.). Spotify. Retrieved April 3, 2022, from <https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features>
